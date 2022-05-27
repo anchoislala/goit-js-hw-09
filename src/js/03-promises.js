@@ -17,6 +17,12 @@ function onFormSubmit(evt) {
     step: Number(refs.step.value),
     amount: Number(refs.amount.value),
   }
+
+  if (0 > creationData.delay || 0 > creationData.step) {
+    console.log('creationData.delay', creationData.delay);
+    console.log('creationData.step', creationData.step);
+    return;
+  }
   
   preparePromiseCreate(creationData);
 }
@@ -35,7 +41,6 @@ function preparePromiseCreate({ delay, step, amount }) {
     delay += step;
  }
 }
-
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
